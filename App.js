@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, Alert, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, Alert, TextInput,TouchableHighlight, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
 function Separator() {
@@ -12,13 +12,14 @@ const Sep = () => {
 
 
 
+
+
 export default function App() {
 
   const handleClick = () =>{
-    Alert.alert("",x)
+    
     console.log('foi')
 
-    return <View style={styles.circle} />;
   }
 
   const [x, setX] = useState('');
@@ -29,32 +30,30 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <Text>Left</Text>
+        <View style={styles.headerCorner}>
+          <Text>Score:</Text>
         </View>
         <View style={styles.headerCenter}>
         </View>
-        <View style={styles.headerRight}>
-          <Text>Right</Text>
+        <View style={styles.headerCorner}>
+          <Text>High Score:</Text>
         </View>
       </View>
 
       <View style={styles.logo}>
-      {/*<ImageBackground source={require('./img/pru.png')} style={styles.bgImage} >
-      </ImageBackground>*/}
-      <Image source={require("./img/pru.png")} style={styles.image} />
+        <Text>Minimus RN</Text>
       </View>
 
       <View style={styles.body}>
         <View>
-          <Text>Iniciar</Text>
+          <Text>Iniciar:</Text>
           <Sep />
         </View>
-        <View>
-        {/*<Button title="Press me" onPress={() => Alert.alert('Simple Button pressed')}/>*/}
-        <TextInput placeholder="x" onChangeText={text => setX(text)} keyboardType={'numeric'}/>
-        <TextInput placeholder="y" onChangeText={(text) => setY(text)} keyboardType={'numeric'}/>
-        <Button title="Press me" onPress={handleClick}/>
+        <View style={styles.element}>
+          <Button title="Teoria dos conjuntos" onPress={handleClick} style={styles.button} color='#34495e' />
+        </View>
+        <View style={styles.element}>
+          <Button title="Teoria dos Grafos" onPress={handleClick} color='#34495e'/>
         </View>
 
       </View>
@@ -75,12 +74,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "stretch",
     marginTop: Constants.statusBarHeight,
-    backgroundColor: 'gray',
+    backgroundColor: '#bdc3c7',
   },
   logo:{
     flex: 2,
     alignItems: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: '#bdc3c7',
   },
   body: {
     flex: 10,
@@ -88,13 +87,15 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'flex-start',
   },
-  headerLeft:{
+  headerCorner:{
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: '#eaeaea',
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "#20232a",
   },
   headerCenter:{
     flex: 4,
-    backgroundColor: 'yellow',
   },
   headerRight:{
     flex: 1,
@@ -115,12 +116,22 @@ const styles = StyleSheet.create({
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  circle: {
-    width: 60,
-    height: 60,
-    borderRadius: 60 / 2,
+  element:{
+    marginVertical: 5,
+  },
+  
+});
+
+const shapes =  StyleSheet.create({
+  square: {
+    width: 100,
+    height: 100,
     backgroundColor: 'red',
-    borderColor: 'black',
-    borderWidth: 3
+  },
+  circle: {
+    width: 100,
+    height: 100,
+    borderRadius: 100/2,
+    backgroundColor: 'red'
   }
 });
