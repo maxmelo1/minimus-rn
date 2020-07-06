@@ -1,63 +1,29 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, Alert, TextInput,TouchableHighlight, Dimensions } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator,createAppContainer } from '@react-navigation/stack';
 import Constants from 'expo-constants';
 
-function Separator() {
-  return <View style={styles.separator} />;
-}
-
-const Sep = () => {
-  return <View style={styles.separator} />;
-}
+import Cadastro from './screens/Cadastro'
+import HomeScreen from './screens/Home'
 
 
 
+
+
+
+const Stack = createStackNavigator();
 
 
 export default function App() {
 
-  const handleClick = () =>{
-    
-    console.log('foi')
-
-  }
-
-  const [x, setX] = useState('');
-  const [y, setY] = useState('');
-
-
-
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerCorner}>
-          <Text>Score:</Text>
-        </View>
-        <View style={styles.headerCenter}>
-        </View>
-        <View style={styles.headerCorner}>
-          <Text>High Score:</Text>
-        </View>
-      </View>
-
-      <View style={styles.logo}>
-        <Text>Minimus RN</Text>
-      </View>
-
-      <View style={styles.body}>
-        <View>
-          <Text>Iniciar:</Text>
-          <Sep />
-        </View>
-        <View style={styles.element}>
-          <Button title="Teoria dos conjuntos" onPress={handleClick} style={styles.button} color='#34495e' />
-        </View>
-        <View style={styles.element}>
-          <Button title="Teoria dos Grafos" onPress={handleClick} color='#34495e'/>
-        </View>
-
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Cadastro" component={Cadastro} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -122,16 +88,3 @@ const styles = StyleSheet.create({
   
 });
 
-const shapes =  StyleSheet.create({
-  square: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'red',
-  },
-  circle: {
-    width: 100,
-    height: 100,
-    borderRadius: 100/2,
-    backgroundColor: 'red'
-  }
-});
